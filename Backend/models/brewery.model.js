@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
-const Review = require("./review.model");
+
+const reviewSchema = new mongoose.Schema({
+  description: String,
+  rating: Number,
+  userID: String,
+  userName: String,
+});
 
 const brewerySchema = new mongoose.Schema({
   name: {
@@ -18,12 +24,7 @@ const brewerySchema = new mongoose.Schema({
   current_rating: Number, // You can calculate and update this based on reviews
   state: String,
   city: String,
-  reviews: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
+  reviews: [reviewSchema],
 });
 
 const Brewery = mongoose.model("Brewery", brewerySchema);

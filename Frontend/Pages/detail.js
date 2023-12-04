@@ -27,7 +27,7 @@ function postData(breweryData) {
   console.log("breweryData", updateData);
 
   fetch(`http://localhost:8080/breweries/${breweryId}`, {
-    method: "PATCH",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
@@ -45,6 +45,8 @@ function postData(breweryData) {
     .catch((error) => {
       console.error("Error during update:", error.message);
     });
+
+  window.location.reload();
 }
 
 document.getElementById("description").addEventListener("input", (e) => {
@@ -81,7 +83,8 @@ async function fetchDataById(id) {
     }
 
     const data = await response.json();
-    console.log("Data fetched successfully 1111:", data);
+    localStorage.setItem("reviews", JSON.stringify(data.reviews));
+
     backedData = data;
     createAndAppendDivs(data);
     // Call a function to handle the fetched data
@@ -176,3 +179,56 @@ function createAndAppendDivs(data) {
 
   container.innerHTML += infoCardinnerHTML;
 }
+
+// Function to create a review card
+function createReviewCard(review) {
+  const reviewCard = document.createElement("div");
+  reviewCard.classList.add("review_card");
+
+  const reviewImg = document.createElement("div");
+  reviewImg.classList.add("review_img");
+
+  const img = document.createElement("img");
+  img.src =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-cDO2BrZ-LeGavwLH-vc8OUfRSwz-A4SkmwrXis-JKw&s";
+  img.alt = "User Image";
+  reviewImg.appendChild(img);
+
+  const reviewDetails = document.createElement("div");
+  reviewDetails.classList.add("review_details");
+
+  const username = document.createElement("p");
+  username.textContent =
+    review.userName !== null ? review.userName : "Anonymous";
+
+  const rating = document.createElement("p");
+  rating.textContent = review.rating;
+
+  const description = document.createElement("p");
+  description.textContent = review.description;
+
+  reviewDetails.appendChild(username);
+  reviewDetails.appendChild(rating);
+  reviewDetails.appendChild(description);
+
+  reviewCard.appendChild(reviewImg);
+  reviewCard.appendChild(reviewDetails);
+
+  console.log(reviewCard);
+  return reviewCard;
+}
+
+// Function to display reviews
+function displayReviews(reviews) {
+  const reviewsContainer = document.getElementById("all_reviews_container");
+
+  reviews.forEach((review) => {
+    const reviewCard = createReviewCard(review);
+    reviewsContainer.appendChild(reviewCard);
+  });
+}
+
+let reviewsData = JSON.parse(localStorage.getItem("reviews"));
+
+// Display reviews using the provided data
+displayReviews(reviewsData);

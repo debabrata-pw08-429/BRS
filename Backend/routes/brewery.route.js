@@ -16,6 +16,6 @@ router.get("/breweries/:id", breweryController.getBreweryById);
 // router.put("/breweries/:id", breweryController.updateBreweryById);
 
 // Route to update a particular brewery by ID using PATCH
-router.patch("/breweries/:id", breweryController.updateBreweryById);
+router.put("/breweries/:id", breweryController.updateBreweryById);
 
 module.exports = router;

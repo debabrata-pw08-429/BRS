@@ -5,7 +5,7 @@ async function Data() {
   let response = await fetch("https://api.openbrewerydb.org/v1/breweries");
   let result = await response.json();
   // Send fetched data to the backend
-  await sendDataToBackend(result);
+  // await sendDataToBackend(result);
   let datafromBackend = await fetchDataFromBackend();
   console.log("datafromBackend", datafromBackend);
   return datafromBackend;
