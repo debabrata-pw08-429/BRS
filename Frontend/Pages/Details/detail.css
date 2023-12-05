@@ -132,3 +132,7 @@ section {
 .rating input[type="radio"]:checked ~ label {
   color: orange;
 }
+
+.ratingStarClass{
+  display: flex;
+}

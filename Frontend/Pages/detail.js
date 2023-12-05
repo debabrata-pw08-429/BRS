@@ -201,8 +201,14 @@ function createReviewCard(review) {
   username.textContent =
     review.userName !== null ? review.userName : "Anonymous";
 
-  const rating = document.createElement("p");
-  rating.textContent = review.rating;
+  const rating = document.createElement("div");
+  rating.setAttribute("class","ratingStarClass")
+  // rating.innerHTML += starSS(review.rating);
+  for(var i=0; i<review.rating; i++){
+    // console.log("from star");
+    rating.innerHTML += `<label for="star" style="color: orange; display:flex ">&#9733;</label>`
+  }
+  console.log("hello");
 
   const description = document.createElement("p");
   description.textContent = review.description;
@@ -217,6 +223,19 @@ function createReviewCard(review) {
   // console.log(reviewCard);
   return reviewCard;
 }
+// function starSS (n){
+//   console.log("from star");
+//   let st  = document.createElement('p')
+//   console.log("from star");
+//   for(var i=0; i<n; i++){
+//     console.log("from star");
+//     st.innerHTML += `<label for="star" style="color: orange; display:flex ">&#9733;</label>`
+//   }
+//   console.log("final opt:",st)
+//   return st
+// }
+
+
 
 // Function to display reviews
 function displayReviews(reviews) {

@@ -57,7 +57,6 @@ function cardStructure(data) {
                     <div class="card-details">
                     <div class="card-details-1">
                         <h2>${data.name}</h2>
-                        <h1>***</h1>
                     </div>
                     <p>${data.city}, ${data.state}</p>
                     <div class="card-details-2">
