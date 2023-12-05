@@ -203,6 +203,7 @@ function createReviewCard(review) {
 
   const rating = document.createElement("div");
   rating.setAttribute("class","ratingStarClass")
+  // rating.setAttribute("style","display:flex")
   // rating.innerHTML += starSS(review.rating);
   for(var i=0; i<review.rating; i++){
     // console.log("from star");

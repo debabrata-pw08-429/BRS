@@ -42,10 +42,35 @@ async function addAllToDom() {
   res.forEach((ele) => {
     let singleCard = cardStructure(ele);
     parentDiv.innerHTML += singleCard;
+    setRatingOnC(ele);
   });
 }
 
 // addTODOM();
+
+function setRatingOnC(data) {
+  let reviewLength = data.reviews.length;
+  let reviewCount = 0;
+
+  for (let i = 0; i < reviewLength; i++) {
+    if (data.reviews[i]?.rating != undefined) {
+      reviewCount += data.reviews[i]?.rating;
+    }
+  }
+
+  let avgRating;
+
+  if (reviewLength != 0) {
+    avgRating = Math.floor(reviewCount / reviewLength);
+  } else {
+    avgRating = 1;
+  }
+
+  let rateId = document.getElementById(data._id);
+  for (let i = 0; i < avgRating; i++) {
+    rateId.innerHTML += `<label for="star8" style="color: orange;">&#9733;</label>`;
+  }
+}
 
 function cardStructure(data) {
   let cardHtml = `            
@@ -57,6 +82,7 @@ function cardStructure(data) {
                     <div class="card-details">
                     <div class="card-details-1">
                         <h2>${data.name}</h2>
+                        <h2 id=${data._id} class="ratingStarClass"></h2>
                     </div>
                     <p>${data.city}, ${data.state}</p>
                     <div class="card-details-2">
