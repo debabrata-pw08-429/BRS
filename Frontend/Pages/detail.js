@@ -214,7 +214,7 @@ function createReviewCard(review) {
   reviewCard.appendChild(reviewImg);
   reviewCard.appendChild(reviewDetails);
 
-  console.log(reviewCard);
+  // console.log(reviewCard);
   return reviewCard;
 }
 
@@ -229,6 +229,5 @@ function displayReviews(reviews) {
 }
 
 let reviewsData = JSON.parse(localStorage.getItem("reviews"));
-
 // Display reviews using the provided data
 displayReviews(reviewsData);
